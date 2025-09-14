@@ -1,0 +1,28 @@
+{
+    "home":{
+        "code":"Enter Teacher's code",
+        "self":"Self Learn",
+        "login":"Login"
+    },
+    "classes":{
+        "selectclass":"Select Your Class",
+        "c":"Class"
+    },
+    "login":{
+        "s":"Student",
+        "t":"Teacher",
+        "sl":"Student Login",
+        "tl":"Teacher Login",
+        "l":"Login",
+        "no-acc":"Don't have an account?",
+        "su":"Sign Up"
+    },
+    "subject":{
+        "m":"Math",
+        "p":"Physics",
+        "c":"Chemistry",
+        "b":"Biology",
+        "s":"Science",
+        "e":"English"
+    }
+}

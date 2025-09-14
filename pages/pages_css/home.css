@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+.bgd{
+  background-image: url("../src/assets/bground.png");
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-left: 20%;
+  position: relative;
+  padding-top: 12%;
+}
+.t{
+  font-family:'Courier New', Courier, monospace;
+  font-size: xx-large;
+}
+.container{
+  height: max-content;
+  width: max-content;
+}
+.card h2 {
+      margin-bottom: 15px;
+      color: black;
+      font-size: xx-large;
+      font-family: 'Poppins-Bold', sans-serif;
+      font-weight: bolder;
+}
+input::placeholder {
+  text-align: center;
+  font-size: xx-large;
+}
+
+
+    .input-box {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255, 182, 193, 0.8);
+      outline: none;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+  .card {
+      width:230px;
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.2); /* Transparent */
+      backdrop-filter: blur(15px); /* Gaussian blur */
+      -webkit-backdrop-filter: blur(15px); /* Safari */
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+
+.or{
+  width: 230px;
+  text-align: center;
+  font-family: 'Poppins',sans-serif;
+  font-weight: bolder;
+}
+.logo{
+  height: max-content;
+  width: max-content;
+}
+.logo img{
+  position: absolute;
+  top: 20%;
+  right:10%;
+  width: 330px;
+  object-fit: contain;
+}
+ .concept-two {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr); /* 7 letters for LEVELUP */
+      gap: 0.5em;
+      padding: 1em;
+    }
+
+    .hover {
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+ .hover h1 {
+      font-size: 3em;
+      margin: 0;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: transparent;
+      -webkit-text-stroke: 2px #fff; /* white stroke outline */
+      text-shadow: none;
+      transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .hover:hover h1 {
+      transform: scale(1.5);
+      color: #fff; /* fill white on hover */
+      -webkit-text-stroke: 2px transparent;
+      text-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+.login{
+  top: 20%;
+  right: 10%;
+
+}
