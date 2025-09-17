@@ -2,14 +2,8 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import "./pages_css/Classes.css"
 
+
 const subjectsByClass = {
-  6: ['Math', 'Science', 'English'],
-  7: ['Math', 'Science', 'English'],
-  8: ['Math', 'Science', 'English'],
-  9: ['Math', 'Physics', 'Chemistry', 'Biology'],
-  10: ['Math', 'Physics', 'Chemistry', 'Biology'],
-  11: ['Math', 'Physics', 'Chemistry', 'Biology'],
-  12: ['Math', 'Physics', 'Chemistry', 'Biology'],
 };
 
 const levels = ['Level 1', 'Level 2', 'Level 3'];

@@ -1,8 +1,11 @@
 {
     "home":{
-        "code":"Enter Teacher's code",
-        "self":"Self Learn",
-        "login":"Login"
+        "sen1":"The free, fun, and",
+        "sen2":"effective way to learn",
+        "get":"GET STARTED",
+        "acc":"I ALREADY HAVE AN ACCOUNT",
+        "lang":"SITE LANGUAGE:",
+        "guest":"Guest"
     },
     "classes":{
         "selectclass":"Select Your Class",
@@ -24,5 +27,16 @@
         "b":"Biology",
         "s":"Science",
         "e":"English"
+    },
+    "register":{
+        "title":"Register Account",
+        "role":"Register as",
+        "student":"Student",
+        "teacher":"Teacher",
+        "username":"username",
+        "email":"email",
+        "password":"password",
+        "confirmPassword":"confirmPassword",
+        "submit":"Register"
     }
 }

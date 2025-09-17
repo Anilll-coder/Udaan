@@ -1,80 +1,68 @@
-import React from 'react'
-import "./pages_css/home.css"
-import { useState } from 'react'
+import "./pages_css/home.css";
+import SiteLanguageDropdown from "../components/SiteLanguage";
+import { useTranslation } from 'react-i18next';
+import { Link } from "react-router-dom";
 
 const Home = () => {
-    const [input,setInput] = useState(true);
-  return (
-    (input)?
-    <>
-        <div className='bgd'>
-        <div className="container flex flex-col justify-center gap-7items-center">
-        <div className="card">
-         <h2>Enter Teacher's Code </h2>
-        <input type="text" className="input-box" placeholder="- - - - -"/>
-        </div>
-        <h2 className='or'>OR</h2>
-        <div className='card'>
-        <button
-          className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xl font-semibold rounded-xl shadow-lg transition duration-300 hover:scale-105 hover:from-purple-600 hover:to-blue-600 animate-fade-in"
-          onClick={()=>{setInput(false)}}
-        >
-          Self Learn
-        </button>
-        </div>
-        </div>
-        <div className="concept-two">
-    <div className="hover"><h1>L</h1></div>
-    <div className="hover"><h1>E</h1></div>
-    <div className="hover"><h1>V</h1></div>
-    <div className="hover"><h1>E</h1></div>
-    <div className="hover"><h1>L</h1></div>
-    <div className="hover"><h1>U</h1></div>
-    <div className="hover"><h1>P</h1></div>
-  </div>
-      <div className='absolute login'>
-            <button
-      className="
-        relative 
-        px-6 py-3 
-        rounded-lg 
-        font-bold 
-        text-white 
-        bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 
-        animate-gradient-x 
-        hover:scale-110 
-        hover:shadow-lg 
-        transform 
-        transition 
-        duration-300 
-        ease-in-out
-        focus:outline-none
-        focus:ring-4
-        focus:ring-purple-300
-        active:scale-95
-      "
-      style={{ backgroundSize: '200% 200%' }}
-    >
-      Login
-      <span
-        className="
-          absolute inset-0 rounded-lg border-2 border-white opacity-0 
-          hover:opacity-100 
-          transition 
-          duration-300 
-          ease-in-out
-          pointer-events-none
-        "
-      ></span>
-    </button>
-      </div>
-      </div>
-    </>
-    :<>  <div className='bgd z-0'>
-              <input type='text' className='z-1'/>
-          </div>
-    </>
-  )
-}
+  const { t, i18n } = useTranslation();
 
-export default Home
+  const onLanguageChange = (lang) => {
+    console.log(lang.key);
+    i18n.changeLanguage(lang.key);
+  };
+
+  return (
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#f9fafb] via-[#f0fdf4] to-[#e0f2fe] flex flex-col font-sans relative overflow-hidden">
+      
+      {/* Language Dropdown */}
+      <div className="flex justify-end pt-4 pr-4">
+        <SiteLanguageDropdown onLanguageChange={onLanguageChange} />
+      </div>
+
+      {/* Main Layout */}
+      <div className="flex flex-col md:flex-row justify-center items-center md:items-center gap-8 md:gap-16 flex-1 px-6 py-4">
+        
+        {/* Left Section: Logo */}
+        <div className="concept-two flex flex-wrap justify-center md:justify-start gap-2 md:gap-3">
+          {['L', 'E', 'V', 'E', 'L', 'U', 'P'].map((letter, idx) => (
+          <div className="hover text-xl sm:text-2xl md:text-3xl font-bold">
+            <h1
+              key={idx}
+              
+            >
+              {letter}
+            </h1>
+            </div>
+          ))}
+        </div>
+
+        {/* Right Section: Content */}
+        <div className="w-full max-w-md text-center md:text-left">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-700 leading-tight mb-6 font-inter">
+            {t('home.sen1')} <br /> {t('home.sen2')}
+          </h1>
+
+          {/* Buttons */}
+          <div className="flex flex-col items-center md:items-start gap-4">
+            <Link to="/register" className="w-full">
+              <button className="btn-primary">{t('home.get')}</button>
+            </Link>
+
+            <Link to="/login" className="w-full">
+              <button className="btn-secondary">{t('home.acc')}</button>
+            </Link>
+
+            <button
+              onClick={() => alert("Guest mode activated")}
+              className="btn-guest w-full"
+            >
+              {t('home.guest') || "Continue as Guest"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Home;

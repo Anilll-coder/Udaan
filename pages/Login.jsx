@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import "./pages_css/Classes.css"
 
 export default function LoginPage() {
-  const [userType, setUserType] = useState('student'); // 'student' or 'teacher'
+  const [userType, setUserType] = useState('student');
 
-  // If using a local image, import at top, e.g.:
-  // import bgImage from './s1.jpg';
-  const bgImage = '../src/assets/bground.png'; // Or use the URL of your background image
+  const bgImage = '../src/assets/bground.png';
 
   return (
     <div
@@ -71,13 +69,13 @@ export default function LoginPage() {
                 <input
                   type="text"
                   placeholder="Username"
-                  className="w-full px-4 py-3 rounded-xl border border-indigo-300 focus:outline-none focus:ring-4 focus:ring-blue-400 focus:border-blue-600 transition shadow-md font-semibold  text-indigo-900 bg-white/60 placeholder:w-xs"
+                  className="w-full px-4 py-3 rounded-xl border border-indigo-300 focus:outline-none focus:ring-4 focus:ring-blue-400 focus:border-blue-600 transition shadow-md font-semibold  text-indigo-900 bg-white/60"
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   style={{ fontSize: '0.875rem' }}
-                  className="w-full px-4 py-3 rounded-xl border border-indigo-300 focus:outline-none focus:ring-4 focus:ring-blue-400 focus:border-blue-600 transition shadow-md font-semibold  text-indigo-900 bg-white/60 placeholder:text-xs"
+                  className="w-full px-4 py-3 rounded-xl border border-indigo-300 focus:outline-none focus:ring-4 focus:ring-blue-400 focus:border-blue-600 transition shadow-md font-semibold  text-indigo-900 bg-white/60"
                 />
                 <button
                   type="submit"

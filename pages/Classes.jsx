@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./pages_css/Classes.css"
-import tags from "../src/translations/en/global.json"
 
 const classes = [6, 7, 8, 9, 10, 11, 12];
 
@@ -16,7 +15,7 @@ export default function ClassSelectionPage() {
     <div className='bgd'>
     <div className="classes h-max p-4 flex flex-col items-center justify-center">
       <h1 className="text-4xl font-extrabold mb-8 text-gray-900 drop-shadow-md">
-        {tags.classes.selectclass}
+        Select Your Class
       </h1>
 
       <div className="mb-8 grid grid-cols-4 gap-6 max-w-xl w-full">
