@@ -1,4 +1,6 @@
+// SiteLanguageDropdown.jsx
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const LANGUAGES = [
   { key: "en", label: "English" },
@@ -9,31 +11,33 @@ const LANGUAGES = [
   { key: "mal", label: "Malayalam" },
 ];
 
-export default function SiteLanguageDropdown({ onLanguageChange }) {
+export default function SiteLanguageDropdown() {
+  const { i18n } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(LANGUAGES[0]);
+  const [selected, setSelected] = useState(
+    LANGUAGES.find(l => l.key === i18n.language) || LANGUAGES[0]
+  );
 
   function handleSelect(lang) {
     setSelected(lang);
     setOpen(false);
-    if (onLanguageChange) {
-      onLanguageChange(lang);
-    }
+    i18n.changeLanguage(lang.key); // This changes language globally
   }
+
   return (
-    <div className="relative">
+    <div className="relative inline-block bg-amber-50">
       <button
-        className="uppercase font-semibold text-sm text-gray-400 select-none px-3 py-2 rounded focus:outline-none focus:ring focus:ring-[#58cc02]"
+        className="uppercase font-semibold text-sm text-black select-none px-3 py-2 rounded focus:outline-none focus:ring focus:ring-[#58cc02]"
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="listbox"
         aria-expanded={open}
         id="site-language-button"
       >
-        SITE LANGUAGE: {selected.label}
+        Language: {selected.label}
       </button>
       {open && (
         <ul
-          className="absolute right-0 mt-2 z-30 w-56 bg-white border border-gray-200 shadow-lg rounded-xl py-2"
+          className="absolute right-2.5 top-full mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-xl  py-2  z-[999] "
           role="listbox"
           aria-labelledby="site-language-button"
         >
@@ -50,9 +54,7 @@ export default function SiteLanguageDropdown({ onLanguageChange }) {
               tabIndex={0}
               onClick={() => handleSelect(lang)}
               onKeyPress={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  handleSelect(lang);
-                }
+                if (e.key === "Enter" || e.key === " ") handleSelect(lang);
               }}
             >
               {lang.label}

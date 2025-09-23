@@ -1,305 +1,87 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
-const classes = [
-  {
-    id: 6,
-    name: "Class 6",
-    subjects: [
-      { name: "Math", topics: ["Numbers", "Algebra Basics", "Geometry"] },
-      { name: "Science", topics: ["Plants", "Animals", "Forces"] },
-      { name: "English", topics: ["Grammar", "Reading", "Writing"] },
-      { name: "Social Studies", topics: ["History", "Geography", "Civics"] },
-    ],
-  },
-  {
-    id: 7,
-    name: "Class 7",
-    subjects: [
-      { name: "Math", topics: ["Integers", "Fractions", "Lines & Angles"] },
-      { name: "Science", topics: ["Cells", "Electricity", "Water Cycle"] },
-      { name: "English", topics: ["Poetry", "Essay Writing", "Comprehension"] },
-      { name: "Social Studies", topics: ["Medieval History", "Resources", "Governance"] },
-    ],
-  },
-  // Add additional classes as needed
-];
-
-export default function MainPage() {
-  const [expandedClassId, setExpandedClassId] = useState(null);
-  const [selectedSubject, setSelectedSubject] = useState(null);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Detect mobile using window width
-  useEffect(() => {
-    function handleResize() {
-      setIsMobile(window.innerWidth < 768);
-      if (window.innerWidth >= 768) setSidebarOpen(true);
-      else setSidebarOpen(false);
+export default function StudentDashboard() {
+  const [classCode, setClassCode] = useState("");
+  const navigate = useNavigate();
+  const handleJoin = () => {
+    if (classCode.trim() !== "") {
+      navigate(`/class/${classCode}`);
+    } else {
+      alert("Please enter a valid class code.");
     }
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // When class is expanded, reset subject selection
-  useEffect(() => {
-    setSelectedSubject(null);
-  }, [expandedClassId]);
-
-  const handleClassClick = (classId) => {
-    setExpandedClassId((prev) => (prev === classId ? null : classId));
-    if (isMobile) setSidebarOpen(false); // Close sidebar on mobile after expand/collapse
   };
-
-  const handleSubjectClick = (subject) => {
-    setSelectedSubject(subject);
-    if (isMobile) setSidebarOpen(false); // Close sidebar on mobile after selection
-  };
-
-  const currentClass = classes.find((cls) => cls.id === expandedClassId);
 
   return (
-    <div style={styles.pageWrapper}>
-      {/* Sidebar */}
-      <aside
-        style={{
-          ...styles.sidebar,
-          ...(sidebarOpen ? styles.sidebarOpen : styles.sidebarClosed),
-          ...(isMobile ? styles.sidebarMobile : {}),
-        }}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-green-100 via-white to-green-200 p-6">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8"
       >
-        <div style={styles.profile}>
-          <img
-            src="https://via.placeholder.com/70"
-            alt="Profile"
-            style={styles.profilePic}
-          />
-          <h3 style={styles.profileName}>Student Name</h3>
-          <p style={styles.profileClass}>
-            {expandedClassId ? `Class ${expandedClassId}` : "Select a Class"}
-          </p>
+        <motion.h1
+          className="text-2xl font-bold text-center mb-6 text-green-700"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          Welcome Student 🎓
+        </motion.h1>
+
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="mb-8"
+        >
+          <h2 className="text-lg font-semibold mb-2 text-gray-700">
+            Join a Class
+          </h2>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              placeholder="Enter teacher's code"
+              value={classCode}
+              onChange={(e) => setClassCode(e.target.value)}
+              className="flex-1 px-3 py-2 border rounded-lg border-green-400 focus:ring-2 focus:ring-green-500 outline-none"
+            />
+            <button
+              onClick={handleJoin}
+              className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-md"
+            >
+              Join
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="flex-1 h-px bg-gray-300"></span>
+          <span className="text-gray-400 text-sm">OR</span>
+          <span className="flex-1 h-px bg-gray-300"></span>
         </div>
 
-        <nav style={styles.nav}>
-          {classes.map((cls) => (
-            <div key={cls.id}>
-              <button
-                style={{
-                  ...styles.classBtn,
-                  ...(expandedClassId === cls.id ? styles.activeClassBtn : {}),
-                }}
-                onClick={() => handleClassClick(cls.id)}
-              >
-                {cls.name}
-              </button>
-              {/* Show subjects if class expanded */}
-              {expandedClassId === cls.id && (
-                <div style={styles.subjectList}>
-                  {cls.subjects.map((subject) => (
-                    <button
-                      key={subject.name}
-                      style={{
-                        ...styles.subjectBtn,
-                        ...(selectedSubject?.name === subject.name
-                          ? styles.activeSubjectBtn
-                          : {}),
-                      }}
-                      onClick={() => handleSubjectClick(subject)}
-                    >
-                      {subject.name}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
-      </aside>
-
-      {/* Main content */}
-      <main style={styles.mainContent}>
-        {/* Toggle button on mobile */}
-        {isMobile && (
+        {/* Self Learn */}
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="text-center"
+        >
+          <h2 className="text-lg font-semibold mb-4 text-gray-700">
+            Prefer Self Learning?
+          </h2>
           <button
-            style={styles.toggleButton}
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            aria-label="Toggle sidebar"
+            onClick={() => navigate("/self-learn")}
+            className="w-full bg-green-500 hover:bg-green-600 text-white text-lg py-2 rounded-xl shadow-md transition-all duration-300"
           >
-            {sidebarOpen ? "Close Menu" : "Open Menu"}
+            Start Self Learn 
           </button>
-        )}
-
-        {!selectedSubject && (
-          <h2 style={styles.pageTitle}>Select a Subject to View Topics</h2>
-        )}
-
-        {selectedSubject && (
-          <div>
-            <h2 style={styles.pageTitle}>
-              Topics in {selectedSubject.name} ({currentClass?.name})
-            </h2>
-            <ul style={styles.topicList}>
-              {selectedSubject.topics.map((topic) => (
-                <li key={topic} style={styles.topicItem}>
-                  {topic}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </main>
-
-      {/* Overlay on mobile */}
-      {isMobile && sidebarOpen && (
-        <div
-          style={styles.overlay}
-          onClick={() => setSidebarOpen(false)}
-          aria-hidden="true"
-        />
-      )}
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
-
-const styles = {
-  pageWrapper: {
-    display: "flex",
-    height: "100vh",
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    backgroundColor: "#f5f7fa",
-    position: "relative",
-  },
-  sidebar: {
-    backgroundColor: "#2f3e46",
-    color: "#fff",
-    display: "flex",
-    flexDirection: "column",
-    padding: 20,
-    boxSizing: "border-box",
-    transition: "transform 0.3s ease",
-    zIndex: 1000,
-    width: 250,
-  },
-  sidebarOpen: {
-    transform: "translateX(0)",
-    position: "relative",
-  },
-  sidebarClosed: {
-    transform: "translateX(-100%)",
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    left: 0,
-  },
-  sidebarMobile: {
-    height: "100vh",
-  },
-  profile: {
-    textAlign: "center",
-    marginBottom: 40,
-  },
-  profilePic: {
-    width: 70,
-    height: 70,
-    borderRadius: "50%",
-    marginBottom: 12,
-  },
-  profileName: {
-    margin: 0,
-    fontWeight: "bold",
-    fontSize: 18,
-  },
-  profileClass: {
-    marginTop: 4,
-    fontSize: 14,
-    color: "#a3b1c2",
-  },
-  nav: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 10,
-    flexGrow: 1,
-  },
-  classBtn: {
-    background: "transparent",
-    border: "none",
-    color: "#a3b1c2",
-    padding: "10px 15px",
-    textAlign: "left",
-    fontSize: 16,
-    cursor: "pointer",
-    borderRadius: 6,
-    transition: "background-color 0.3s ease",
-  },
-  activeClassBtn: {
-    backgroundColor: "#52796f",
-    color: "#fff",
-  },
-  subjectList: {
-    marginLeft: 20,
-    marginTop: 5,
-    display: "flex",
-    flexDirection: "column",
-    gap: 6,
-  },
-  subjectBtn: {
-    background: "transparent",
-    border: "none",
-    color: "#cfd8dc",
-    padding: "6px 15px",
-    textAlign: "left",
-    fontSize: 15,
-    cursor: "pointer",
-    borderRadius: 6,
-    transition: "background-color 0.3s ease",
-  },
-  activeSubjectBtn: {
-    backgroundColor: "#84a98c",
-    color: "#fff",
-  },
-  mainContent: {
-    flexGrow: 1,
-    padding: 30,
-    overflowY: "auto",
-    position: "relative",
-    zIndex: 1,
-    backgroundColor: "#fff",
-  },
-  pageTitle: {
-    marginBottom: 20,
-    color: "#222",
-  },
-  topicList: {
-    listStyleType: "disc",
-    paddingLeft: 20,
-    margin: 0,
-    fontSize: 16,
-  },
-  topicItem: {
-    marginBottom: 8,
-    color: "#555",
-  },
-  toggleButton: {
-    position: "fixed",
-    top: 16,
-    left: 16,
-    zIndex: 1100,
-    backgroundColor: "#52796f",
-    color: "#ffffff",
-    border: "none",
-    borderRadius: 6,
-    padding: "10px 16px",
-    cursor: "pointer",
-    fontSize: 16,
-  },
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(0,0,0,0.3)",
-    zIndex: 900,
-  },
-};
