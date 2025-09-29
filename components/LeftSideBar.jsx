@@ -102,7 +102,7 @@ export const LeftSidebar = ({ user, onClassChange, onLogout }) => {
               className="w-full flex items-center space-x-3 px-4 py-3 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg transition-colors"
             >
               <BookOpen className="w-5 h-5" />
-              <span className="font-medium">Change Class</span>
+              <span className="font-medium">Change Subject</span>
             </button>
           </div>
         </div>
@@ -272,7 +272,7 @@ export const LeftSidebar = ({ user, onClassChange, onLogout }) => {
           <div className="bg-white rounded-xl max-w-md w-full p-6">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold text-gray-800">
-                Select Your Class
+                Select Your Subject
               </h2>
               <button
                 onClick={() => setShowClassModal(false)}

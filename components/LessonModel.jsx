@@ -5,10 +5,10 @@ export const LessonModal = ({ lesson, onClose, onStart }) => {
   if (!lesson) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl max-w-md w-full p-6 transform transition-all">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-gray-800">{lesson.title}</h2>
+          <h2 className="text-xl self-center font-bold text-gray-800">{lesson.title}</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700"
@@ -22,17 +22,12 @@ export const LessonModal = ({ lesson, onClose, onStart }) => {
             {lesson.type === 'story' ? (
               <Star className="w-10 h-10 text-white" />
             ) : (
-              <span className="text-2xl font-bold text-white">{lesson.title.charAt(0)}</span>
+              <span className="text-2xl font-bold text-white">{lesson.id}</span>
             )}
           </div>
           
           <p className="text-center text-gray-600 mb-4">
-            {lesson.type === 'story' 
-              ? 'Practice with a fun story!' 
-              : lesson.type === 'checkpoint'
-              ? 'Test your knowledge with a comprehensive review!'
-              : 'Learn new vocabulary and grammar concepts.'
-            }
+            {lesson?.topic}
           </p>
           
           <div className="flex justify-center items-center space-x-4 text-sm text-gray-500">

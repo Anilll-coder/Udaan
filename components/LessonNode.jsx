@@ -22,12 +22,15 @@ export const LessonNode = ({ lesson, onClick, position }) => {
     if (lesson.status === 'completed') return <CheckCircle className="w-6 h-6" />;
     if (lesson.type === 'story') return <Star className="w-6 h-6" />;
     if (lesson.type === 'checkpoint') return <span className="text-xs font-bold">CP</span>;
-    return <span className="text-lg font-bold">{lesson.title.charAt(0)}</span>;
+    return <span className="text-lg font-bold">{lesson.id.charAt(0)}</span>;
   };
 
   const handleClick = () => {
     if (lesson.status !== 'locked') {
       onClick(lesson);
+    }
+    else{
+      alert("locked");
     }
   };
 
@@ -45,7 +48,7 @@ export const LessonNode = ({ lesson, onClick, position }) => {
       
       <div className="mt-2 text-center">
         <p className="text-sm font-semibold text-gray-700 max-w-20 mx-auto leading-tight">
-          {lesson.title}
+          {lesson.id}
         </p>
         {lesson.stars && lesson.status === 'completed' && (
           <div className="flex justify-center mt-1 space-x-1">

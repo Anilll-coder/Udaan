@@ -14,7 +14,7 @@ i18n
       escapeValue: false,
     },
     backend: {
-      loadPath: 'src/translations/{{lng}}/global.json', 
+      loadPath: '/translations/{{lng}}/global.json', 
     },
     detection: {
       caches: [],         

@@ -43,7 +43,7 @@ function Main1() {
         hearts: 5,
         totalXP: 2850,
         friendsCount: 4,
-        currentClass: "Spanish for Beginners",
+        currentClass: "Mathematics",
         currentLevelXP: 350,
         nextLevelXP: 600,
       });

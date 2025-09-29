@@ -1,9 +1,9 @@
 const lessons = [
-  // Level 1 - Foundation
   {
     id: '1',
-    title: '1',
-    status: 'completed',
+    title:'Playing With Numbers',
+    topic:'factors, multiples, primes,',
+    status: 'current',
     type: 'lesson',
     stars: 3,
     xp: 20,
@@ -11,7 +11,7 @@ const lessons = [
   {
     id: '2',
     title: '2',
-    status: 'completed',
+    status: 'available',
     type: 'lesson',
     stars: 3,
     xp: 20,
@@ -19,26 +19,25 @@ const lessons = [
   {
     id: '3',
     title: '3',
-    status: 'current',
+    status: 'locked',
     type: 'lesson',
     xp: 20,
   },
   {
     id: '4',
     title: '4',
-    status: 'available',
+    status: 'locked',
     type: 'lesson',
     xp: 20,
   },
   {
     id: '5',
     title: '5',
-    status: 'available',
+    status: 'locked',
     type: 'story',
     xp: 15,
   },
   
-  // Level 2 - Building Vocabulary
   {
     id: '6',
     title: '6',
@@ -68,7 +67,6 @@ const lessons = [
     xp: 40,
   },
   
-  // Level 3 - Daily Life
   {
     id: '10',
     title: '10',
@@ -98,7 +96,6 @@ const lessons = [
     xp: 20,
   },
   
-  // Level 4 - Actions & Verbs
   {
     id: '14',
     title: '14',
@@ -127,8 +124,6 @@ const lessons = [
     type: 'checkpoint',
     xp: 50,
   },
-  
-  // Level 5 - Advanced Topics
   {
     id: '18',
     title: '18',
